@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Class to represent a sport 
  * @author jenniferstreit
  */
 public class Sport {
@@ -15,11 +15,10 @@ public class Sport {
     
     public Sport(SportRecord record) {
         theRecord = record;
-        if (getName() == null) {
+        if (getName() == null)
             throw new NameIsEmptyException("This instance doesn't have a name");
-        }
     }
-    
+
     public Sport(String name) {
         this(new SportRecord(), name);
     }
@@ -45,20 +44,6 @@ public class Sport {
         return theRecord;
     }
     
-    public void saveIt() {
-        theRecord.saveIt();
-    }
-    
-    public List<Sport> findAll() {
-        List<SportRecord> sportRecords = theRecord.findAll();
-        List<Sport> sports = new ArrayList<>();
-        
-        for (SportRecord s : sportRecords) {
-            sports.add(new Sport(s));
-        }
-        return sports;
-    }
-    
     public List<League> getAllConnectedLeagues() {
         List<League> leagues = new ArrayList<>();
         List<LeagueRecord> records = theRecord.getAll(LeagueRecord.class);
@@ -68,22 +53,45 @@ public class Sport {
         return leagues;
     }
     
-    public static Sport findById(Integer id) {
-        return new Sport(SportRecord.findById(id));
-    }
+//    public void saveIt() {
+//        theRecord.saveIt();
+//    }
     
-    public static Sport findByName(String name) {
-        List<SportRecord> sr = SportRecord.where("name = ?", name);
-        return new Sport(sr.get(0));
-    }
+//    public List<Sport> findAll() {
+//        List<SportRecord> sportRecords = theRecord.findAll();
+//        List<Sport> sports = new ArrayList<>();
+//        
+//        for (SportRecord s : sportRecords) {
+//            sports.add(new Sport(s));
+//        }
+//        return sports;
+//    }
     
-    public static boolean doesSportExist(String name) {
-        List<SportRecord> sr = SportRecord.where("name = ?", name);
-        if (sr.isEmpty()) {
-            return false; 
-        } else {
-            return true;
-        }
-    }
+//    public static boolean doesSportExist(String name) {
+//        List<SportRecord> sr = SportRecord.where("name = ?", name);
+//        if (sr.isEmpty()) {
+//            return false; 
+//        } else {
+//            return true;
+//        }
+//    }
+//    
+//    public static Sport findById(Integer id) {
+//        return new Sport(SportRecord.findById(id));
+//    }
+    
+//    public static Sport findByName(String name) {
+//        List<SportRecord> sr = SportRecord.where("name = ?", name);
+//        return new Sport(sr.get(0));
+//    }
+    
+//    public static boolean doesSportExist(String name) {
+//        List<SportRecord> sr = SportRecord.where("name = ?", name);
+//        if (sr.isEmpty()) {
+//            return false; 
+//        } else {
+//            return true;
+//        }
+//    }
     
 }
