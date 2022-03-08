@@ -63,7 +63,7 @@ public class Player {
         return theRecord;
     }
     
-    public void saveIt() {
-        theRecord.saveIt();
-    }
+//    public void saveIt() {
+//        theRecord.saveIt();
+//    }
 }

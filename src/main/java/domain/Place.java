@@ -62,9 +62,9 @@ public class Place {
         return theRecord;
     }
     
-    public static Place findById(Integer id) {
-        return new Place(PlaceRecord.findById(id));
-    }
+//    public static Place findById(Integer id) {
+//        return new Place(PlaceRecord.findById(id));
+//    }
     
     public Integer getId() {
         return theRecord.getLongId().intValue();

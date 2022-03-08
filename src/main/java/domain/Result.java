@@ -37,7 +37,7 @@ public class Result {
         return theRecord;
     }
     
-    public void saveIt() {
-        theRecord.saveIt();
-    }
+//    public void saveIt() {
+//        theRecord.saveIt();
+//    }
 }

@@ -54,22 +54,22 @@ public class Team {
         return theRecord.getLongId().intValue();
     }
     
-    public static Team findById(Integer id) {
-        return new Team(TeamRecord.findById(id));
-    }
+//    public static Team findById(Integer id) {
+//        return new Team(TeamRecord.findById(id));
+//    }
     
-    public void saveIt() {
-        theRecord.saveIt();
-    }
-    
-    public static List<Team> findAll() {
-       List<TeamRecord> teamRecords = TeamRecord.findAll();
-       List<Team> teams = new ArrayList<>();
-       for (TeamRecord t : teamRecords) {
-           teams.add(new Team(t));
-       }
-       return teams;
-    }
-    
+//    public void saveIt() {
+//        theRecord.saveIt();
+//    }
+//    
+//    public static List<Team> findAll() {
+//       List<TeamRecord> teamRecords = TeamRecord.findAll();
+//       List<Team> teams = new ArrayList<>();
+//       for (TeamRecord t : teamRecords) {
+//           teams.add(new Team(t));
+//       }
+//       return teams;
+//    }
+//    
     
 }

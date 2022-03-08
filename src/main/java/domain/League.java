@@ -60,12 +60,12 @@ public class League {
         return theRecord;
     }    
     
-    public void saveIt() {
-        theRecord.saveIt();
-    }
+//    public void saveIt() {
+//        theRecord.saveIt();
+//    }
     
-    public static League findByName(String name) {
-        List<LeagueRecord> lr = LeagueRecord.where("name = ?", name);
-        return new League(lr.get(0));
-    }
+//    public static League findByName(String name) {
+//        List<LeagueRecord> lr = LeagueRecord.where("name = ?", name);
+//        return new League(lr.get(0));
+//    }
 }
