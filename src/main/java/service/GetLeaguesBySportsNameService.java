@@ -1,5 +1,6 @@
 package service;
 
+import broker.BrokerFactory;
 import db.DbConn;
 import domain.League;
 import domain.Sport;
@@ -13,9 +14,11 @@ public class GetLeaguesBySportsNameService {
     private Sport sport;
     private List<League> leagues;
     private final String sportName;
+    private DbConn dbConn;
+    private BrokerFactory brokerFactory;
     
     /**
-     * 
+     * Constructor to save the sportName
      * @param sportName,  the name of the sport that the selected League should play
      */
     public GetLeaguesBySportsNameService(String sportName) {
@@ -23,14 +26,25 @@ public class GetLeaguesBySportsNameService {
     }
     
     /**
-     * 
-     * @return List, a list if Leagues 
+     * Gets the necessary dependencies 
+     * @param dbConn, the connection to database
+     * @param brokerFactory, enables the class to get a broker without creating
+     * a dependency
+     */
+    public void init(DbConn dbConn, BrokerFactory brokerFactory) {
+        this.dbConn = dbConn;
+        this.brokerFactory = brokerFactory;
+    }
+    
+    /**
+     * Gets a the leagues connected to a specific sport 
+     * @return a list if Leagues 
      */
     public List<League> execute() {
-        DbConn.getInstance().open();
-        this.sport = Sport.findByName(this.sportName);
+        dbConn.open();
+        this.sport = brokerFactory.getSportBroker().findByName(this.sportName);
         this.leagues = sport.getAllConnectedLeagues();
-        DbConn.getInstance().close();
+        dbConn.close();
         return leagues;
     }
     

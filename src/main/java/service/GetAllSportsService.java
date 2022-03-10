@@ -1,9 +1,8 @@
 package service;
 
+import broker.BrokerFactory;
 import db.DbConn;
 import domain.Sport;
-import domain.records.SportRecord;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,8 +10,21 @@ import java.util.List;
  * @author jenniferstreit
  */
 public class GetAllSportsService {
-    List<SportRecord> records;
-    List<Sport> sports;
+    
+    private List<Sport> sports;
+    private DbConn dbConn;
+    private BrokerFactory brokerFactory;
+    
+    /**
+     * Gets the necessary dependencies 
+     * @param dbConn, the connection to database
+     * @param brokerFactory, enables the class to get a broker without creating
+     * a dependency
+     */
+    public void init(DbConn dbConn, BrokerFactory brokerFactory) {
+        this.brokerFactory = brokerFactory;
+        this.dbConn = dbConn;
+    }
     
     /**
      * Creates an ArrayList of new sports, these are created with the SportRecords
@@ -20,13 +32,9 @@ public class GetAllSportsService {
      * @return sports, a list with all sports in the Table "sports" in the database
      */
     public List<Sport> execute() {
-        DbConn.getInstance().open();
-        records = SportRecord.findAll();
-        sports = new ArrayList<>();
-        for (SportRecord record : records) {
-            sports.add(new Sport(record));
-        }
-        DbConn.getInstance().close();
+        dbConn.open();
+        sports = brokerFactory.getSportBroker().findAll();
+        dbConn.close();
         return sports;
     }
 }
