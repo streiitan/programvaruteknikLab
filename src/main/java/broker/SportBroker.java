@@ -34,26 +34,29 @@ public class SportBroker {
     /**
      * Searches the database after a sport by a specific name
      * @param name, the name of the sport 
-     * @return a sport object
+     * @return a sport object or null if the list is empty
      */
     public Sport findByName(String name) {
         List<SportRecord> sr = SportRecord.where("name = ?", name);
+        if (sr.isEmpty()) {
+            return null; 
+        }
         return new Sport(sr.get(0));
     }
     
-    /**
-     * Checks the database if a specific sport exists
-     * @param name, the name of the sport
-     * @return true if the sport exists otherwise false
-     */
-    public boolean doesSportExist(String name) {
-        List<SportRecord> sr = SportRecord.where("name = ?", name);
-        if (sr.isEmpty()) {
-            return false; 
-        } else {
-            return true;
-        }
-    }
+//    /**
+//     * Checks the database if a specific sport exists
+//     * @param name, the name of the sport
+//     * @return true if the sport exists otherwise false
+//     */
+//    public boolean doesSportNameExist(String name) {
+//        List<SportRecord> sr = SportRecord.where("name = ?", name);
+//        if (sr.isEmpty()) {
+//            return false; 
+//        } else {
+//            return true;
+//        }
+//    }
     
     /**
      * Method that creates a new sport
