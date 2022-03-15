@@ -4,6 +4,7 @@ import broker.BrokerFactory;
 import db.DbConn;
 import domain.League;
 import domain.Season;
+import exceptions.SportstatServiceException;
 import java.sql.Date;
 
 /**
@@ -11,7 +12,6 @@ import java.sql.Date;
  * @author jenniferstreit
  */
 public class CreateNewSeasonService {
-    private final Long leagueId;
     private final League l;
     private final Date startDate;
     private final Date endDate;
@@ -21,13 +21,12 @@ public class CreateNewSeasonService {
     
     /**
      * 
-     * @param leagueId, the id of the league that is connected to the new season
+     * @param l, the id of the league that is connected to the new season
      * @param startDate, the start date of the season
      * @param endDate, the end date of the season
      */
-    public CreateNewSeasonService(Long leagueId, String startDate, String endDate) {
-        this.leagueId = leagueId; 
-        l = brokerFactory.getLeagueBroker().findById(this.leagueId);
+    public CreateNewSeasonService(League l, String startDate, String endDate) {
+        this.l = l;
         this.startDate = Date.valueOf(startDate);
         this.endDate = Date.valueOf(endDate);
     }
@@ -44,10 +43,23 @@ public class CreateNewSeasonService {
     }
     
     /**
-     * 
+     * Creates a new season, but first checks if the start date is before the 
+     * end date
+     * @throws SportstatServiceException
      * @return s, the new season that was created
      */
     public Season execute() {
-        return null;
+        dbConn.open();
+        s = brokerFactory.getSeasonBroker().create(); 
+        if (startDate.before(endDate)) {
+            s.setStartDate(startDate);
+            s.setEndDate(endDate);
+        } else {
+            throw new SportstatServiceException("End date is before start date");
+        }
+        s.setLeague(l);
+        brokerFactory.getSeasonBroker().save(s);
+        dbConn.close();
+        return s;
     }
 }
