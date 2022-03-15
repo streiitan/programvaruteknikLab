@@ -1,7 +1,6 @@
 package service;
 
 import broker.BrokerFactory;
-import broker.LeagueBroker;
 import broker.SportBroker;
 import db.DbConn;
 import domain.League;
@@ -14,7 +13,8 @@ import static org.mockito.Mockito.when;
 
 
 /**
- *
+ * Tests the service get LeaguesBySportNameService so the method execute returns
+ * a list
  * @author jenniferstreit
  */
 public class GetLeaguesBySportsNameServiceTest {
@@ -42,7 +42,7 @@ public class GetLeaguesBySportsNameServiceTest {
         Sport sport = mock(Sport.class);
         List<League> list = mock(List.class);
         SportBroker sportBroker = brokerFactory.getSportBroker();
-        when(sportBroker.findByName("fotboll")).thenReturn(sport);
+        when(sportBroker.findByName(name)).thenReturn(sport);
         when(sport.getAllConnectedLeagues()).thenReturn(list);
         when(list.toString()).thenReturn("list"); 
         

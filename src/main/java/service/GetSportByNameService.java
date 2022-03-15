@@ -9,11 +9,9 @@ import broker.BrokerFactory;
  * sport does not exist the sport will be created by the CreateNewSportService
  * @author jenniferstreit
  */
-public class GetSportByNameService {
+public class GetSportByNameService extends BaseService<Sport> {
     private final String sportName;
     private Sport s;
-    private DbConn dbConn;
-    private BrokerFactory brokerFactory;
 
     /**
      * Constructor to save the name of the sport
@@ -24,30 +22,18 @@ public class GetSportByNameService {
     }
     
     /**
-     * Gets the necessary dependencies 
-     * @param dbConn, the connection to database
-     * @param brokerFactory, enables the class to get a broker without creating
-     * a dependency
-     */
-    public void init(DbConn dbConn, BrokerFactory brokerFactory) {
-        this.dbConn = dbConn;
-        this.brokerFactory = brokerFactory;
-    }
-    
-    /**
      * Gets a sport from the database, if the sport does not exists it will be
      * created by the class CreateNewSportService 
      * @return a sport object
      */
+    @Override
     public Sport execute() {
-        dbConn.open();
-        if (brokerFactory.getSportBroker().findByName(sportName) == null) {
-            s = brokerFactory.getSportBroker().findByName(sportName);
+        if (getBrokerFactory().getSportBroker().findByName(sportName) == null) {
+            s = getBrokerFactory().getSportBroker().findByName(sportName);
         } else {
             CreateNewSportService newSport = new CreateNewSportService(sportName);
             s = newSport.execute();
         }
-        dbConn.close();
         return s;
     }
 }
