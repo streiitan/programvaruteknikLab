@@ -51,47 +51,5 @@ public class Sport {
             leagues.add(new League(record));
         }
         return leagues;
-    }
-    
-//    public void saveIt() {
-//        theRecord.saveIt();
-//    }
-    
-//    public List<Sport> findAll() {
-//        List<SportRecord> sportRecords = theRecord.findAll();
-//        List<Sport> sports = new ArrayList<>();
-//        
-//        for (SportRecord s : sportRecords) {
-//            sports.add(new Sport(s));
-//        }
-//        return sports;
-//    }
-    
-//    public static boolean doesSportExist(String name) {
-//        List<SportRecord> sr = SportRecord.where("name = ?", name);
-//        if (sr.isEmpty()) {
-//            return false; 
-//        } else {
-//            return true;
-//        }
-//    }
-//    
-//    public static Sport findById(Integer id) {
-//        return new Sport(SportRecord.findById(id));
-//    }
-    
-//    public static Sport findByName(String name) {
-//        List<SportRecord> sr = SportRecord.where("name = ?", name);
-//        return new Sport(sr.get(0));
-//    }
-    
-//    public static boolean doesSportExist(String name) {
-//        List<SportRecord> sr = SportRecord.where("name = ?", name);
-//        if (sr.isEmpty()) {
-//            return false; 
-//        } else {
-//            return true;
-//        }
-//    }
-    
+    }   
 }

@@ -3,7 +3,7 @@ package service;
 import db.DbConn;
 import domain.Sport;
 import broker.BrokerFactory;
-import exceptions.SportExistsException;
+import exceptions.SportstatServiceException;
 
 /**
  * This class gives the user the ability to creates new sports
@@ -17,7 +17,7 @@ public class CreateNewSportService {
     private BrokerFactory brokerFactory; 
 
     /**
-     *
+     * Saves the name for the new sport
      * @param name, the name of the sport that the user want to create
      */
     public CreateNewSportService(String name) {
@@ -43,10 +43,10 @@ public class CreateNewSportService {
     public Sport execute() {
         this.dbConn.open();
         if (brokerFactory.getSportBroker().findByName(name) == null) {
-            sport = new Sport(name);
+            sport = brokerFactory.getSportBroker().create(name);
             brokerFactory.getSportBroker().save(sport);
         } else {
-            throw new SportExistsException("This sport already exists");
+            throw new SportstatServiceException("This sport already exists");
         }
         this.dbConn.close();
         return sport;

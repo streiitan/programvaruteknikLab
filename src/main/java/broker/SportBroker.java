@@ -44,26 +44,16 @@ public class SportBroker {
         return new Sport(sr.get(0));
     }
     
-//    /**
-//     * Checks the database if a specific sport exists
-//     * @param name, the name of the sport
-//     * @return true if the sport exists otherwise false
-//     */
-//    public boolean doesSportNameExist(String name) {
-//        List<SportRecord> sr = SportRecord.where("name = ?", name);
-//        if (sr.isEmpty()) {
-//            return false; 
-//        } else {
-//            return true;
-//        }
-//    }
-    
     /**
      * Method that creates a new sport
      * @return a new sport object
      */
     public Sport create() {
         return new Sport(new SportRecord()); 
+    }
+    
+    public Sport create(String name) {
+        return new Sport(new SportRecord(), name);
     }
     
     /**

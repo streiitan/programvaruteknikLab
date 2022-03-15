@@ -41,7 +41,7 @@ public class GetSportByNameService {
      */
     public Sport execute() {
         dbConn.open();
-        if (brokerFactory.getSportBroker().doesSportExist(sportName)) {
+        if (brokerFactory.getSportBroker().findByName(sportName) == null) {
             s = brokerFactory.getSportBroker().findByName(sportName);
         } else {
             CreateNewSportService newSport = new CreateNewSportService(sportName);

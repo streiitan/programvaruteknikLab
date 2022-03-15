@@ -1,9 +1,9 @@
 package domain;
 
+import broker.TeamBroker;
 import domain.records.GameRecord;
 import domain.records.PlaceRecord;
 import domain.records.ResultRecord;
-import domain.records.TeamRecord;
 
 /**
  *
@@ -11,6 +11,7 @@ import domain.records.TeamRecord;
  */
 public class Game {
     private GameRecord theRecord;
+    private TeamBroker teamBroker = new TeamBroker();
     
     public Game() {
         this(new GameRecord());
@@ -21,11 +22,11 @@ public class Game {
     }
     
     public Team getHomeTeam() {
-        return Team.findById(theRecord.getInteger("home_team_id"));
+        return teamBroker.findById(theRecord.getLong("home_team_id"));
     }
     
     public Team getGuestTeam() {
-        return Team.findById(theRecord.getInteger("guest_team_id"));
+        return teamBroker.findById(theRecord.getLong("guest_team_id"));
     }
     
     public Place getPlace() {
@@ -63,8 +64,4 @@ public class Game {
     public GameRecord getRecord() {
         return theRecord;
     }
-    
-//    public void saveIt() {
-//        theRecord.saveIt();
-//    }
 }
