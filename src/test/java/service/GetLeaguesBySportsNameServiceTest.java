@@ -23,7 +23,7 @@ public class GetLeaguesBySportsNameServiceTest {
 
     @Test
     public void testGetAllLeauges() {
-        GetLeaguesBySportsNameService testService = new GetLeaguesBySportsNameService(name);
+        GetLeaguesBySportNameService testService = new GetLeaguesBySportNameService(name);
         BrokerFactory brokerFactory = getMockedBrokerFactoryWithBrokersSetup();
         testService.init(brokerFactory);
         List<League> leagues = testService.execute();
