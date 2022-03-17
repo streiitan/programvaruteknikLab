@@ -21,18 +21,19 @@ public class DbConn {
     }
 
    public void open() {
-       Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost/sport_stats?serverTimezone=UTC", "root", "jennifer");
+       Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://node96052-mysql.jls-sto3.elastx.net:11107/19jest01?"
+               + "useSSL=false", "19jest01", "19jest01_pwd");
     }
     
     public void close() {
         Base.close();
     }
     
-    public static void _open() {
-        Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost/sport_stats?serverTimezone=UTC", "root", "jennifer");
-    }
-    
-    public static void _close() {
-        Base.close();
-    }
+//    public static void _open() {
+//        Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost/sport_stats?serverTimezone=UTC", "root", "jennifer");
+//    }
+//    
+//    public static void _close() {
+//        Base.close();
+//    }
 }

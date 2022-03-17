@@ -3,6 +3,7 @@ package service;
 import broker.BrokerFactory;
 
 /**
+ * A abstract class to implement the init-method to relate to the DRY principle 
  * 
  * @author jenniferstreit
  */
@@ -22,6 +23,9 @@ public abstract class BaseService<T> implements SportstatService<T> {
     @Override
     public abstract T execute();
     
+    /**
+     * @return brokerFactory that was set in the constructor
+     */
     public BrokerFactory getBrokerFactory() {
         return brokerFactory;
     }

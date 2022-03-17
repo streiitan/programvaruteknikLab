@@ -3,8 +3,8 @@ package domain;
 import domain.records.LeagueRecord;
 import domain.records.SportRecord;
 import exceptions.NameIsEmptyException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class to represent a sport 
@@ -15,8 +15,6 @@ public class Sport {
     
     public Sport(SportRecord record) {
         theRecord = record;
-        if (getName() == null)
-            throw new NameIsEmptyException("This instance doesn't have a name");
     }
 
     public Sport(String name) {
@@ -45,11 +43,9 @@ public class Sport {
     }
     
     public List<League> getAllConnectedLeagues() {
-        List<League> leagues = new ArrayList<>();
         List<LeagueRecord> records = theRecord.getAll(LeagueRecord.class);
-        for (LeagueRecord record : records) {
-            leagues.add(new League(record));
-        }
-        return leagues;
+        return records.stream()
+                .map(rec -> new League((LeagueRecord)rec))
+                .collect(Collectors.toList());
     }   
 }

@@ -11,7 +11,7 @@ import domain.records.ResultRecord;
  */
 public class Game {
     private GameRecord theRecord;
-    private TeamBroker teamBroker = new TeamBroker();
+    private final TeamBroker teamBroker = new TeamBroker();
     
     public Game() {
         this(new GameRecord());

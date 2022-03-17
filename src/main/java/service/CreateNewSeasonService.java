@@ -7,15 +7,19 @@ import java.sql.Date;
 
 /**
  * Gives the user the ability to creates new Seasons
+ * 
  * @author jenniferstreit
  */
 public class CreateNewSeasonService extends BaseService<Season> {
+    
     private final League l;
     private final Date startDate;
     private final Date endDate;
     private Season s;
     
     /**
+     * The constructor to set the final variables that will be used in the execute
+     * method
      * 
      * @param l, the id of the league that is connected to the new season
      * @param startDate, the start date of the season

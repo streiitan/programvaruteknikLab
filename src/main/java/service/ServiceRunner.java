@@ -1,8 +1,7 @@
-package runners;
+package service;
 
 import broker.BrokerFactory;
 import db.DbConn;
-import service.SportstatService;
 
 /**
  *

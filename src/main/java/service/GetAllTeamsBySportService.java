@@ -31,14 +31,14 @@ public class GetAllTeamsBySportService extends BaseService<List<Team>> {
     @Override
     public List<Team> execute() {
         seasons = getBrokerFactory().getSeasonBroker().findAll();
-        GetLeaguesBySportsNameService getLeagues = new GetLeaguesBySportsNameService(sportName);
+        GetLeaguesBySportNameService getLeagues = new GetLeaguesBySportNameService(sportName);
         List<League> leagues = getLeagues.execute();
-        for (League l : leagues) {
+        leagues.forEach(l -> {
             seasons.addAll(l.getAllConnectedSeasons());
-        }
-        for (Season s: seasons) {
+        });
+        seasons.forEach(s -> {
             teams.addAll(s.getAllTeamsConnected());
-        }
+        });
         return teams;
     }
     

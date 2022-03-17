@@ -1,8 +1,6 @@
 package service;
 
-import db.DbConn;
 import domain.Sport;
-import broker.BrokerFactory;
 
 /**
  * This class gets the sport that equals the input in the constructor. If the 
