@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CreateNewSeasonServiceIT {
 
-    ServiceRunner<Season> seasonServiceRunner;
-    ServiceRunner<League> leagueServiceRunner;
-    CreateNewSeasonService service;
-    GetLeagueByIdService leagueService;
-    Season s;
-    String mars = "2022-03-22";
-    String april = "2022-04-22";
+    private ServiceRunner<Season> seasonServiceRunner;
+    private ServiceRunner<League> leagueServiceRunner;
+    private SportstatService<Season> service;
+    private SportstatService<League> leagueService;
+    private Season s;
+    private String mars = "2022-03-22";
+    private String april = "2022-04-22";
 
     /**
      * Test to create a new season
@@ -37,7 +37,7 @@ public class CreateNewSeasonServiceIT {
     }
     
     /**
-     * Test to test that the season throws an exception if the start date is 
+     * Test that the service throws an exception if the start date is 
      * after the end date. It is also a test to make sure that nothing ends up 
      * in the database
      */
