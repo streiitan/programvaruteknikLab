@@ -17,7 +17,10 @@ public class CreateNewSportService extends BaseService<Sport> {
      * @param name, the name of the sport that the user want to create
      */
     public CreateNewSportService(String name) {
-        this.name = name;
+        name = name.trim();
+        this.name = name.toLowerCase();
+        
+        
     }
 
     /**

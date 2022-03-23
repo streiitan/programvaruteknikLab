@@ -2,6 +2,7 @@ package service;
 
 import broker.BrokerFactory;
 import db.DbConn;
+import exceptions.SportstatServiceException;
 
 /**
  *
@@ -9,6 +10,7 @@ import db.DbConn;
  */
 public class ServiceRunner<T> {
     private final SportstatService<T> service; 
+    T result;
     
     public ServiceRunner(SportstatService<T> service) {
         this.service = service;
@@ -18,8 +20,13 @@ public class ServiceRunner<T> {
         DbConn dbConn = DbConn.getInstance();
         service.init(new BrokerFactory());
         dbConn.open();
-        T result = service.execute();
+        try {
+        result = service.execute();
+        } catch (SportstatServiceException e) {
+            throw new SportstatServiceException(e.getMessage(), e);
+        } finally {
         dbConn.close();
+        }
         return result;
     }
 }
