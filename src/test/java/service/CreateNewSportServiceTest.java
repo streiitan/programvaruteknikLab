@@ -18,16 +18,16 @@ public class CreateNewSportServiceTest {
 
     @Test
     public void testCreateNewSport() {
-        CreateNewSportService testService = new CreateNewSportService("Gymnastik");
+        CreateNewSportService testService = new CreateNewSportService("gymnastik");
         BrokerFactory brokerFactory = getMockedBrokerFactoryWithBrokersSetup();
         testService.init(brokerFactory);
         Sport s = testService.execute();
-        assertEquals("Gymnastik", s.getName());
+        assertEquals("gymnastik", s.getName());
     }
 
     @Test
     public void testCreateNewSportThatAllreadyExists() {
-        CreateNewSportService testService = new CreateNewSportService("Fotboll");
+        CreateNewSportService testService = new CreateNewSportService("fotboll");
         BrokerFactory brokerFactory = getMockedBrokerFactoryWithBrokersSetup();
         testService.init(brokerFactory);
         assertThrows(SportstatServiceException.class, () -> testService.execute());
@@ -44,10 +44,10 @@ public class CreateNewSportServiceTest {
         BrokerFactory brokerFactory = getMockedBrokerFactory();
         Sport sport = mock(Sport.class);
         SportBroker sportBroker = brokerFactory.getSportBroker();
-        when(sportBroker.findByName("Fotboll")).thenReturn(sport);
-        when(sportBroker.findByName("Gymnastik")).thenReturn(null);
-        when(sportBroker.create("Gymnastik")).thenReturn(sport);
-        when(sport.getName()).thenReturn("Gymnastik");
+        when(sportBroker.findByName("fotboll")).thenReturn(sport);
+        when(sportBroker.findByName("gymnastik")).thenReturn(null);
+        when(sportBroker.create("gymnastik")).thenReturn(sport);
+        when(sport.getName()).thenReturn("gymnastik");
         return brokerFactory;
     }
 }
