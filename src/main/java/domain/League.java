@@ -49,23 +49,10 @@ public class League {
     }
     
     public void setSport(Sport s) {
-//        if (s.getName()!= null) {
-            theRecord.setParent(s.getRecord());
-//        } else {
-//            throw new ObjectIsEmptyException("This sport object is empty");
-//        }
+        theRecord.setParent(s.getRecord());
     }
     
     public LeagueRecord getRecord() {
         return theRecord;
     }    
-    
-//    public void saveIt() {
-//        theRecord.saveIt();
-//    }
-    
-//    public static League findByName(String name) {
-//        List<LeagueRecord> lr = LeagueRecord.where("name = ?", name);
-//        return new League(lr.get(0));
-//    }
 }
