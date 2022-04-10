@@ -38,7 +38,7 @@ public class SportBroker {
      */
     public Sport findByName(String name) {
         List<SportRecord> sr = SportRecord.where("name = ?", name);
-        if (sr.isEmpty()) {
+        if (sr == null) {
             return null; 
         }
         return new Sport(sr.get(0));

@@ -26,7 +26,7 @@ public class GetSportByNameService extends BaseService<Sport> {
      */
     @Override
     public Sport execute() {
-        if (getBrokerFactory().getSportBroker().findByName(sportName) == null) {
+        if (getBrokerFactory().getSportBroker().findByName(sportName) != null) {
             s = getBrokerFactory().getSportBroker().findByName(sportName);
         } else {
             CreateNewSportService newSport = new CreateNewSportService(sportName);

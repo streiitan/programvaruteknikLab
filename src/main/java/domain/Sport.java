@@ -1,5 +1,6 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import domain.records.LeagueRecord;
 import domain.records.SportRecord;
 import exceptions.NameIsEmptyException;
@@ -30,6 +31,10 @@ public class Sport {
         return theRecord.getString("name");
     }
     
+    public Long getId() {
+        return theRecord.getLongId();
+    }
+    
     public void setName(String name) {
         if (!name.isBlank()) {
             theRecord.set("name", name);
@@ -37,11 +42,13 @@ public class Sport {
             throw new NameIsEmptyException("Name is blank");
         }
     }
-
+    
+    @JsonIgnore
     public SportRecord getRecord() {
         return theRecord;
     }
     
+    @JsonIgnore
     public List<League> getAllConnectedLeagues() {
         List<LeagueRecord> records = theRecord.getAll(LeagueRecord.class);
         return records.stream()
